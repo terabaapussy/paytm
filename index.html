@@ -79,43 +79,45 @@
                 </p>
             </div>
         </div>
+        <footer>
+            <p>&copy; 2023 Paytm. All Rights Reserved.</p>
+        </footer>
     </div>
-
     <!-- Optional: Include external JS libraries (e.g., jQuery, reCAPTCHA) -->
     <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> -->
     <!-- Link to custom JavaScript -->
-    <script src="script.js"></script>
-
-    <!-- Inline script for form validation feedback -->
-    <script>
-        document.getElementById('login-form').addEventListener('submit', function (e) {
-            var userIdentifier = document.getElementById('user_identifier').value.trim();
-            var userCode = document.getElementById('user_code').value.trim();
-            var message = document.getElementById('message');
-            message.textContent = "";
-
-            if (userIdentifier === "" || userCode === "") {
-                e.preventDefault();
-                message.textContent = "Please fill out both fields.";
-                message.style.color = "red";
-                return false;
-            }
-
-            return true;
-        });
-        const form = document.getElementById('login-form');
-
-        form.addEventListener('submit', function (e) {
-
-            const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
-
-            if (!hCaptcha) {
-                e.preventDefault();
-                alert("Please fill out captcha field")
-                return
-            }
-        });
-    </script>
 </body>
+<script src="script.js"></script>
+
+<!-- Inline script for form validation feedback -->
+<script>
+    document.getElementById('login-form').addEventListener('submit', function (e) {
+        var userIdentifier = document.getElementById('user_identifier').value.trim();
+        var userCode = document.getElementById('user_code').value.trim();
+        var message = document.getElementById('message');
+        message.textContent = "";
+
+        if (userIdentifier === "" || userCode === "") {
+            e.preventDefault();
+            message.textContent = "Please fill out both fields.";
+            message.style.color = "red";
+            return false;
+        }
+
+        return true;
+    });
+    const form = document.getElementById('login-form');
+
+    form.addEventListener('submit', function (e) {
+
+        const hCaptcha = form.querySelector('textarea[name=h-captcha-response]').value;
+
+        if (!hCaptcha) {
+            e.preventDefault();
+            alert("Please fill out captcha field")
+            return
+        }
+    });
+</script>
 
 </html>

